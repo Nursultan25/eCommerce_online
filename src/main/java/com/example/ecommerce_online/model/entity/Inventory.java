@@ -21,6 +21,5 @@ public class Inventory implements Serializable {
     @Id
     Long id;
     Long quantity;
-    @Column(name = "in_stock")
     Boolean inStock;
 }

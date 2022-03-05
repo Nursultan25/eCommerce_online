@@ -23,7 +23,6 @@ public class Discount implements Serializable {
     @Id
     Long id;
     Long discount;
-    @Column(name = "start_date")
     LocalDateTime startDate;
     LocalDateTime endDate;
 }
