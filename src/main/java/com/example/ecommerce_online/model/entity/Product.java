@@ -25,7 +25,7 @@ public class Product implements Serializable {
     String suitableFor;
     @Column(nullable = false, length = 50)
     String usage;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50) // Свойства
     String consistOf;
     @Column(nullable = false, length = 20)
     String volume;
