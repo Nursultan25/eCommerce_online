@@ -19,13 +19,13 @@ public class Product implements Serializable {
     Long id;
     @Column(nullable = false, length = 50)
     String name;
-    @Column(nullable = false, length = 100, columnDefinition = "description")
+    @Column(nullable = false, length = 100) // Description
     String description;
     @Column(nullable = false, length = 50)
     String suitableFor;
     @Column(nullable = false, length = 50)
     String usage;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50) // Свойства
     String consistOf;
     @Column(nullable = false, length = 20)
     String volume;
