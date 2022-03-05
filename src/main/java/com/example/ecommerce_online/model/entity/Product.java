@@ -19,7 +19,7 @@ public class Product implements Serializable {
     Long id;
     @Column(nullable = false, length = 50)
     String name;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100, columnDefinition = "description")
     String description;
     @Column(nullable = false, length = 50)
     String suitableFor;
