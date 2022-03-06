@@ -22,7 +22,7 @@ import java.util.Date;
 public class Discount implements Serializable {
     @Id
     Long id;
-    Long discount;
+    Byte discount;
     LocalDateTime startDate;
     LocalDateTime endDate;
 }
