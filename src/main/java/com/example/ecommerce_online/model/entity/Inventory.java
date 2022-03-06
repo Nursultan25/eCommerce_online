@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 
 @Setter
@@ -20,6 +21,7 @@ import java.io.Serializable;
 public class Inventory implements Serializable {
     @Id
     Long id;
+    @PositiveOrZero
     Long quantity;
     Boolean inStock;
 }
