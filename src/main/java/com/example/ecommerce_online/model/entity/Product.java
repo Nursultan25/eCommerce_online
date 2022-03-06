@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -45,4 +47,7 @@ public class Product implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "product_status")
     ProductStatus productStatus;
+    String image;
+    LocalDateTime dateCreated;
+    BigDecimal discountedPrice;
 }

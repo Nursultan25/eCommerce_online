@@ -15,12 +15,16 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
             "ORDER BY prs.price DESC", nativeQuery = true)
     Optional<List<Product>> findByLowPrice();
 
-    @Query(value = "", nativeQuery = true)
+    @Query(value = "SELECT * FROM tb_product AS prod " +
+            "JOIN tb_price AS prs ON prod.id = prs.id " +
+            "ORDER BY prs.price ASC", nativeQuery = true)
     Optional<List<Product>> findByHighPrice();
 
-    @Query(value = "", nativeQuery = true)
+    @Query(value = "SELECT * FROM tb_product AS prod" +
+            "ORDER BY date_created DESC", nativeQuery = true)
     Optional<List<Product>> findByDateOld();
 
-    @Query(value = "", nativeQuery = true)
+    @Query(value = "SELECT * FROM tb_product AS prod" +
+            "ORDER BY date_created ASC", nativeQuery = true)
     Optional<List<Product>> findByDateNew();
 }
