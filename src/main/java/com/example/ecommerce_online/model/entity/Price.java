@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "price")
+@Table(name = "tb_price")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Price implements Serializable {
     @Id

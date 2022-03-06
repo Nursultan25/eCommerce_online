@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "role")
+@Table(name = "tb_role")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role implements Serializable {
     @Id

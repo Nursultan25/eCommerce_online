@@ -15,7 +15,7 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "category")
+@Table(name = "tb_category")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Category implements Serializable {
     @Id

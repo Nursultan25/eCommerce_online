@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "tb_order")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Order implements Serializable {
     @Id

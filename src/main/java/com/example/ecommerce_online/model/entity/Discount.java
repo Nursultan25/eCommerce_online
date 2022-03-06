@@ -17,7 +17,7 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "tb_discount")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Discount implements Serializable {
     @Id

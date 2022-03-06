@@ -12,7 +12,7 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "product")
+@Table(name = "tb_product")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Product implements Serializable {
     @Id
