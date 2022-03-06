@@ -21,6 +21,6 @@ public class Category implements Serializable {
     @Id
     Long id;
     String name;
-    @Column(columnDefinition = "DEFAULT boolean true")
+    @Column(columnDefinition = "boolean default true")
     Boolean active;
 }
