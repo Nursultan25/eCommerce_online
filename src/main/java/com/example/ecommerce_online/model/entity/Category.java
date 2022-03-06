@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Setter
@@ -20,7 +21,9 @@ import java.io.Serializable;
 public class Category implements Serializable {
     @Id
     Long id;
+    @NotBlank
     String name;
+    @NotBlank
     String image;
     @Column(columnDefinition = "boolean default true")
     Boolean active;

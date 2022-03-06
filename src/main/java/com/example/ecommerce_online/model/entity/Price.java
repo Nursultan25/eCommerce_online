@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -20,5 +21,6 @@ import java.math.BigDecimal;
 public class Price implements Serializable {
     @Id
     Long id;
+    @PositiveOrZero
     BigDecimal price;
 }
