@@ -19,6 +19,7 @@ import java.util.List;
 public class Role implements Serializable {
     @Id
     String name;
+    @Enumerated(EnumType.STRING)
     @ElementCollection
     List<Authority> authority;
 }

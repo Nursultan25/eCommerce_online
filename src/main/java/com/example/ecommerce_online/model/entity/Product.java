@@ -1,5 +1,6 @@
 package com.example.ecommerce_online.model.entity;
 
+import com.example.ecommerce_online.model.enums.ProductStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -41,4 +42,7 @@ public class Product implements Serializable {
     @ManyToOne
     @JoinColumn(name = "inventory")
     Inventory inventory;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "product_status")
+    ProductStatus productStatus;
 }
