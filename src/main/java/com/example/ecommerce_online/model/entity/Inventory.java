@@ -15,7 +15,7 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "inventory")
+@Table(name = "tb_inventory")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Inventory implements Serializable {
     @Id

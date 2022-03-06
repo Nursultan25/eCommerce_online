@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Setter
 @Getter
@@ -14,10 +15,10 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "price")
+@Table(name = "tb_price")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Price implements Serializable {
     @Id
     Long id;
-    Long price;
+    BigDecimal price;
 }
