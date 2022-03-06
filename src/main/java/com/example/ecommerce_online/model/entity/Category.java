@@ -21,6 +21,7 @@ public class Category implements Serializable {
     @Id
     Long id;
     String name;
+    String image;
     @Column(columnDefinition = "boolean default true")
     Boolean active;
 }
