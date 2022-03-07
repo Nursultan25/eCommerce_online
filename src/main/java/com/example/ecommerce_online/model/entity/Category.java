@@ -22,6 +22,9 @@ public class Category implements Serializable {
     @Id
     Long id;
     @NotBlank
+    String title;
+    String description;
+    @NotBlank
     String name;
     @NotBlank
     String image;
