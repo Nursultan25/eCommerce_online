@@ -1,12 +1,14 @@
-package com.example.ecommerce_online.service.dto;
+package com.example.ecommerce_online.model.request;
 
 import com.example.ecommerce_online.model.entity.Category;
 import com.example.ecommerce_online.model.entity.Discount;
 import com.example.ecommerce_online.model.entity.Inventory;
 import com.example.ecommerce_online.model.entity.Price;
 import com.example.ecommerce_online.model.enums.ProductStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -16,12 +18,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ProductDto {
-    Long id;
+@NoArgsConstructor
+public class CreateProductRequest {
     String name;
     String description;
     String suitableFor;
@@ -30,12 +29,9 @@ public class ProductDto {
     String volume;
     String brand;
     ProductStatus productStatus;
-    Category category;
-    Price price;
-    Discount discount;
-    Inventory inventory;
+    Long category;
+    Long price;
+    Long discount;
+    Long inventory;
     String image;
-    @JsonIgnore
-    LocalDateTime dateCreated;
-    BigDecimal discountedPrice;
 }
