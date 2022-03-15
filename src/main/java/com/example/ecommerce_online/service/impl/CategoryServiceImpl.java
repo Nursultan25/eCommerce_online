@@ -30,19 +30,16 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Cacheable(key = "#id")
     public List<Category> getAll() {
         return categoryRepo.findAll();
     }
 
     @Override
-    @Cacheable(key = "#id")
     public Category get(Long id) {
         return categoryRepo.getById(id);
     }
 
     @Override
-    @CachePut(key = "#id")
     public Category update(Category category) {
         return categoryRepo.findById(category.getId())
                 .map(category1 -> {
@@ -55,7 +52,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @CacheEvict(key = "#id")
     public Category delete(Long id) {
         categoryRepo.deleteById(id);
         return categoryRepo.findById(id).orElseThrow(() ->

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/#/inventory")
+@RequestMapping("/inventory")
 public class InventoryController implements AbstractBaseController<Inventory>{
 
     private final InventoryService inventoryService;
@@ -23,7 +23,7 @@ public class InventoryController implements AbstractBaseController<Inventory>{
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<?> create(Inventory inventory) {
+    public ResponseEntity<?> create(@RequestBody Inventory inventory) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(inventoryService.create(inventory));
         } catch (RuntimeException ex) {
@@ -42,8 +42,8 @@ public class InventoryController implements AbstractBaseController<Inventory>{
     }
 
     @Override
-    @GetMapping("/get")
-    public ResponseEntity<?> get(Long id) {
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> get(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(inventoryService.get(id));
         } catch (RuntimeException ex) {
@@ -53,7 +53,7 @@ public class InventoryController implements AbstractBaseController<Inventory>{
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<?> update(Inventory inventory) {
+    public ResponseEntity<?> update(@RequestBody Inventory inventory) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(inventoryService.update(inventory));
         } catch (RuntimeException ex) {
@@ -62,8 +62,8 @@ public class InventoryController implements AbstractBaseController<Inventory>{
     }
 
     @Override
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(Long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(inventoryService.delete(id));
         } catch (RuntimeException ex) {

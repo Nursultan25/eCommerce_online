@@ -20,6 +20,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Order implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @ManyToOne
     @JoinColumn(name = "user")

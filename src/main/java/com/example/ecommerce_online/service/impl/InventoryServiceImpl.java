@@ -31,19 +31,16 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    @Cacheable(cacheNames = "inventory", key = "#id")
     public List<Inventory> getAll() {
         return inventoryRepo.findAll();
     }
 
     @Override
-    @Cacheable(cacheNames = "inventory", key = "#id")
     public Inventory get(Long id) {
         return inventoryRepo.getById(id);
     }
 
     @Override
-    @CachePut(cacheNames = "inventory", key = "#id")
     public Inventory update(Inventory inventory) {
         return inventoryRepo.findById(inventory.getId())
                 .map(inventory1 -> {
@@ -55,7 +52,6 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    @CacheEvict(cacheNames = "inventory", key = "#id")
     public Inventory delete(Long id) {
         inventoryRepo.deleteById(id);
         return inventoryRepo.findById(id).

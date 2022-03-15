@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Product implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @Column(nullable = false, length = 50)
     String name;
@@ -35,6 +36,7 @@ public class Product implements Serializable {
     String consistOf;
     @Column(nullable = false, length = 20)
     String volume;
+    String brand;
     @ManyToOne
     @JoinColumn(name = "category")
     Category category;

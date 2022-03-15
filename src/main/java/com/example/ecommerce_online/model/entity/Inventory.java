@@ -3,10 +3,7 @@ package com.example.ecommerce_online.model.entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 
@@ -20,6 +17,7 @@ import java.io.Serializable;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Inventory implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @PositiveOrZero
     Long quantity;

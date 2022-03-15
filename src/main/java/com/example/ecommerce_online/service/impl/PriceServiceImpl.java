@@ -27,19 +27,16 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    @Cacheable(cacheNames = "price", key = "#id")
     public List<Price> getAll() {
         return priceRepo.findAll();
     }
 
     @Override
-    @Cacheable(cacheNames = "price", key = "#id")
     public Price get(Long id) {
         return priceRepo.getById(id);
     }
 
     @Override
-    @CachePut(cacheNames = "price", key = "#id")
     public Price update(Price price) {
         return priceRepo.findById(price.getId())
                 .map(price1 -> {
@@ -50,7 +47,6 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    @CachePut(cacheNames = "price", key = "#id")
     public Price delete(Long id) {
         priceRepo.deleteById(id);
         return priceRepo.findById(id)

@@ -1,13 +1,11 @@
 package com.example.ecommerce_online.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.PositiveOrZero;
@@ -22,16 +20,20 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "tb_discount")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Discount implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @PositiveOrZero
     @Min(0)
     @Max(100)
-    Byte discount;
+    Integer discount;
+    @JsonIgnore
     @CreationTimestamp
     LocalDateTime startDate;
+    @JsonIgnore
     LocalDateTime endDate;
 }

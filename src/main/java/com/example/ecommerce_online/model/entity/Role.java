@@ -19,6 +19,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotBlank
     String name;
     @Enumerated(EnumType.STRING)

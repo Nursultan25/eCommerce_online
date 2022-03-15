@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/#/discount")
+@RequestMapping("/discount")
 public class DiscountController implements AbstractBaseController<Discount>{
 
     private final DiscountService discountService;
@@ -22,7 +22,7 @@ public class DiscountController implements AbstractBaseController<Discount>{
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<?> create(Discount discount) {
+    public ResponseEntity<?> create(@RequestBody Discount discount) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(discountService.create(discount));
         } catch (RuntimeException ex) {
@@ -41,8 +41,8 @@ public class DiscountController implements AbstractBaseController<Discount>{
     }
 
     @Override
-    @GetMapping("/get")
-    public ResponseEntity<?> get(Long id) {
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> get(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(discountService.get(id));
         } catch (RuntimeException ex) {
@@ -52,7 +52,7 @@ public class DiscountController implements AbstractBaseController<Discount>{
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<?> update(Discount discount) {
+    public ResponseEntity<?> update(@RequestBody Discount discount) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(discountService.update(discount));
         } catch (RuntimeException ex) {
@@ -61,8 +61,8 @@ public class DiscountController implements AbstractBaseController<Discount>{
     }
 
     @Override
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(Long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(discountService.delete(id));
         } catch (RuntimeException ex) {

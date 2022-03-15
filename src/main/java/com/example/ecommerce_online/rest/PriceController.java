@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/#/price")
+@RequestMapping("/price")
 public class PriceController implements AbstractBaseController<Price> {
 
     private final PriceService priceService;
@@ -22,7 +22,7 @@ public class PriceController implements AbstractBaseController<Price> {
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<?> create(Price price) {
+    public ResponseEntity<?> create(@RequestBody Price price) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(priceService.create(price));
         } catch (RuntimeException ex) {
@@ -41,8 +41,8 @@ public class PriceController implements AbstractBaseController<Price> {
     }
 
     @Override
-    @GetMapping("/get")
-    public ResponseEntity<?> get(Long id) {
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> get(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(priceService.get(id));
         } catch (RuntimeException ex) {
@@ -52,7 +52,7 @@ public class PriceController implements AbstractBaseController<Price> {
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<?> update(Price price) {
+    public ResponseEntity<?> update(@RequestBody Price price) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(priceService.update(price));
         } catch (RuntimeException ex) {
@@ -61,8 +61,8 @@ public class PriceController implements AbstractBaseController<Price> {
     }
 
     @Override
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(Long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(priceService.delete(id));
         } catch (RuntimeException ex) {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/#/category")
+@RequestMapping("/category")
 public class CategoryController implements AbstractBaseController<Category>{
 
     private final CategoryService categoryService;
@@ -24,7 +24,7 @@ public class CategoryController implements AbstractBaseController<Category>{
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<?> create(Category category) {
+    public ResponseEntity<?> create(@RequestBody Category category) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.create(category));
         } catch (RuntimeException ex) {
@@ -43,8 +43,8 @@ public class CategoryController implements AbstractBaseController<Category>{
     }
 
     @Override
-    @GetMapping("/get")
-    public ResponseEntity<?> get(Long id) {
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> get(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(categoryService.get(id));
         } catch (RuntimeException ex) {
@@ -54,7 +54,7 @@ public class CategoryController implements AbstractBaseController<Category>{
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<?> update(Category category) {
+    public ResponseEntity<?> update(@RequestBody Category category) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(categoryService.update(category));
         } catch (RuntimeException ex) {
@@ -63,8 +63,8 @@ public class CategoryController implements AbstractBaseController<Category>{
     }
 
     @Override
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(Long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(categoryService.delete(id));
         } catch (RuntimeException ex) {

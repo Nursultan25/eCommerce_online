@@ -8,9 +8,15 @@ import java.util.List;
 
 @Service
 public interface CategoryService {
+
     Category create(Category category);
+
     List<Category> getAll();
+
     Category get(Long id);
+
     Category update(Category category);
+
     Category delete(Long id);
+
 }
