@@ -78,34 +78,29 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Cacheable(cacheNames = "product", key = "product.id")
     public List<ProductDto> getAll() {
         return productMapper.toDtoList(productRepo.findAll());
     }
 
     @Override
-    @Cacheable(cacheNames = "product", key = "#id")
     public List<ProductDto> findByLowPrice() {
         return new ProductMapper().toDtoList(productRepo.findByLowPrice()
                 .orElseThrow(() -> new NotFoundException("No products found")));
     }
 
     @Override
-    @Cacheable(cacheNames = "product", key = "#id")
     public List<ProductDto> findByHighPrice() {
         return new ProductMapper().toDtoList(productRepo.findByHighPrice()
                 .orElseThrow(() -> new NotFoundException("No products found")));
     }
 
     @Override
-    @Cacheable(cacheNames = "product", key = "#id")
     public List<ProductDto> findByDateOld() {
         return new ProductMapper().toDtoList(productRepo.findByDateOld()
                 .orElseThrow(() -> new NotFoundException("No products found")));
     }
 
     @Override
-    @Cacheable(cacheNames = "product", key = "#id")
     public List<ProductDto> findByDateNew() {
         return new ProductMapper().toDtoList(productRepo.findByDateNew()
                 .orElseThrow(() -> new NotFoundException("No products found")));
@@ -118,14 +113,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Cacheable(cacheNames = "product", key = "#id")
     public ProductDto get(Long id) {
         return new ProductMapper().toDto(productRepo.findById(id)
                 .orElseThrow(() -> new NotFoundException("Could  not find by id: " + id)));
     }
 
     @Override
-    @CachePut(cacheNames = "product", key = "#id")
     public ProductDto update(UpdateProductRequest request) {
         Category category = categoryRepo.getById(request.getCategory());
         Price price = priceRepo.getById(request.getPrice());
@@ -150,11 +143,10 @@ public class ProductServiceImpl implements ProductService {
                     product.setDiscountedPrice(discountedPricer(price, discount));
                     productRepo.save(product);
                     return product;
-                }));
+                }).orElseThrow(() -> new NotFoundException("Could not update with id: " + request.getId())));
     }
 
     @Override
-    @CacheEvict(cacheNames = "product", key = "#id")
     public ProductDto delete(Long id) {
         Product product = productRepo.findById(id)
                 .orElseThrow(() -> new NotFoundException("Product with id: " + id + " not found or already deleted"));

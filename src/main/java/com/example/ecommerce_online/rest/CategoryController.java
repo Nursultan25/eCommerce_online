@@ -11,7 +11,6 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/category")
-@CrossOrigin("*")
 public class CategoryController implements AbstractBaseController<Category>{
 
     private final CategoryService categoryService;

@@ -44,6 +44,18 @@ public class DiscountServiceImpl implements DiscountService {
         }
     }
 
+    @Scheduled(cron = "0 0 */12 ? * *")
+    public void updatingDiscount() throws InterruptedException{
+        List<Discount> discounts = discountRepo.findAll();
+        for (Discount discount : discounts) {
+            int interSeconds = discount.getStartDate().getSecond() - LocalDateTime.now().getSecond();
+            if (discount.getEndDate().compareTo(discount.getStartDate().plusSeconds(interSeconds)) < 0) {
+                discount.setDiscount(0);
+                discountRepo.save(discount);
+            }
+        }
+    }
+
     @Override
     public Discount create(Discount discount) {
         return discountRepo.save(Discount.builder()

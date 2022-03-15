@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/price")
-@CrossOrigin("*")
 public class PriceController implements AbstractBaseController<Price> {
 
     private final PriceService priceService;
