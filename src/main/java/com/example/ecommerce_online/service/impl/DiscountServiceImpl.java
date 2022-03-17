@@ -1,8 +1,11 @@
 package com.example.ecommerce_online.service.impl;
 
 import com.example.ecommerce_online.model.entity.Discount;
+import com.example.ecommerce_online.model.request.UpdateProductRequest;
 import com.example.ecommerce_online.repository.DiscountRepo;
+import com.example.ecommerce_online.repository.ProductRepo;
 import com.example.ecommerce_online.service.DiscountService;
+import com.example.ecommerce_online.service.ProductService;
 import com.example.ecommerce_online.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -17,10 +20,14 @@ import java.util.List;
 public class DiscountServiceImpl implements DiscountService {
 
     private final DiscountRepo discountRepo;
+    private final ProductRepo productRepo;
+    private final ProductService productService;
 
     @Autowired
-    public DiscountServiceImpl(DiscountRepo discountRepo) {
+    public DiscountServiceImpl(DiscountRepo discountRepo, ProductRepo productRepo, ProductService productService) {
         this.discountRepo = discountRepo;
+        this.productRepo = productRepo;
+        this.productService = productService;
     }
 
     @Scheduled(cron = "0 0 */12 ? * *")
@@ -31,6 +38,8 @@ public class DiscountServiceImpl implements DiscountService {
             if (discount.getEndDate().compareTo(discount.getStartDate().plusSeconds(interSeconds)) < 0) {
                 discount.setDiscount(0);
                 discountRepo.save(discount);
+                productRepo.findByDiscount(discount).map(products -> products.stream().map(product ->
+                        productService.update( new UpdateProductRequest(product.getId()))));
             }
         }
     }

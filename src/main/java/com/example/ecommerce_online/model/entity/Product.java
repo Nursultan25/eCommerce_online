@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "tb_product")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Product implements Serializable {

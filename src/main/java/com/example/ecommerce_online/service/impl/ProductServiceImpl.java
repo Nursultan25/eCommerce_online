@@ -43,12 +43,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto create(CreateProductRequest request) {
-        Category category = categoryRepo.getById(request.getCategory());
-        Price price = priceRepo.getById(request.getPrice());
-        Discount discount = discountRepo.getById(request.getDiscount());
-        Inventory inventory = inventoryRepo.getById(request.getInventory());
+        Category category = categoryRepo.findById(request.getCategory()).get();
+        Price price = priceRepo.findById(request.getPrice()).get();
+        Discount discount = discountRepo.findById(request.getDiscount()).get();
+        Inventory inventory = inventoryRepo.findById(request.getInventory()).get();
 
-        ProductDto productDto = ProductDto.builder()
+        Product product = Product.builder()
                 .name(request.getName())
                 .description(request.getDescription())
                 .suitableFor(request.getSuitableFor())
@@ -65,16 +65,19 @@ public class ProductServiceImpl implements ProductService {
                 .discountedPrice(discountedPricer(price, discount))
                 .build();
 
-            productRepo.save(new ProductMapper().toEntity(productDto));
-        return productDto;
+            productRepo.save(product);
+        return new ProductMapper().toDto(product);
     }
 
     public BigDecimal discountedPricer(Price price, Discount discount) {
         BigDecimal priceVal = price.getPrice();
-        double discountVal = discount.getDiscount() / 100;
+        System.out.println("------------------------- PRICE IS " + priceVal);
+        int discountVal = discount.getDiscount();
+        System.out.println("------------------------- DISCOUNT IS " + discountVal);
         BigDecimal result = BigDecimal.ZERO;
-        result = BigDecimal.valueOf(priceVal.doubleValue() - (priceVal.doubleValue() * discountVal));
-        return result;
+        result = BigDecimal.valueOf((discountVal / priceVal.doubleValue()) * 100);
+        System.out.println("------------------------- FINAL PRICE " + result);
+        return BigDecimal.valueOf(Math.round(result.doubleValue()));
     }
 
     @Override
@@ -120,27 +123,76 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto update(UpdateProductRequest request) {
-        Category category = categoryRepo.getById(request.getCategory());
-        Price price = priceRepo.getById(request.getPrice());
-        Discount discount = discountRepo.getById(request.getDiscount());
-        Inventory inventory = inventoryRepo.getById(request.getInventory());
 
         return new ProductMapper().toDto(productRepo.findById(request.getId())
                 .map(product -> {
+                    if (request.getName() == null) {
+                        product.setName(product.getName());
+                    } else
                     product.setName(request.getName());
+
+                    if (request.getDescription() == null) {
+                        product.setDescription(product.getDescription());
+                    } else
                     product.setDescription(request.getDescription());
+
+                    if (request.getSuitableFor() == null) {
+                        product.setSuitableFor(product.getSuitableFor());
+                    } else
                     product.setSuitableFor(request.getSuitableFor());
+
+                    if (request.getUsage() == null) {
+                        product.setUsage(product.getUsage());
+                    } else
                     product.setUsage(request.getUsage());
+
+                    if (request.getConsistOf() == null) {
+                        product.setConsistOf(product.getConsistOf());
+                    } else
                     product.setConsistOf(request.getConsistOf());
+
+                    if (request.getVolume() == null) {
+                        product.setVolume(product.getVolume());
+                    } else
                     product.setVolume(request.getVolume());
+
+                    if (request.getBrand() == null) {
+                        product.setBrand(product.getBrand());
+                    } else
                     product.setBrand(request.getBrand());
+
+                    if (request.getProductStatus() == null) {
+                        product.setProductStatus(product.getProductStatus());
+                    } else
                     product.setProductStatus(request.getProductStatus());
-                    product.setCategory(category);
-                    product.setPrice(price);
-                    product.setDiscount(discount);
-                    product.setInventory(inventory);
+
+                    if (request.getCategory() == null) {
+                        product.setCategory(product.getCategory());
+                    } else
+                    product.setCategory(categoryRepo.findById(request.getCategory()).get());
+
+                    if (request.getPrice() == null) {
+                        product.setPrice(product.getPrice());
+                    } else
+                    product.setPrice(priceRepo.findById(request.getPrice()).get());
+
+                    if (request.getDiscount() == null) {
+                        product.setDiscount(product.getDiscount());
+                    } else
+                    product.setDiscount(discountRepo.findById(request.getDiscount()).get());
+
+                    if (request.getInventory() == null) {
+                        product.setInventory(product.getInventory());
+                    } else
+                    product.setInventory(inventoryRepo.findById(request.getInventory()).get());
+
+                    if (request.getImage() == null) {
+                        product.setImage(product.getImage());
+                    } else
                     product.setImage(request.getImage());
-                    product.setDiscountedPrice(discountedPricer(price, discount));
+
+                    product.setDiscountedPrice(discountedPricer(product.getPrice(), product.getDiscount()));
+
                     productRepo.save(product);
                     return product;
                 }).orElseThrow(() -> new NotFoundException("Could not update with id: " + request.getId())));
