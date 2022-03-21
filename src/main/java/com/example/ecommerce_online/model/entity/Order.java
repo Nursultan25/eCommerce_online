@@ -2,8 +2,10 @@ package com.example.ecommerce_online.model.entity;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -14,10 +16,11 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "tb_order")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Order implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @ManyToOne
     @JoinColumn(name = "user")
@@ -29,7 +32,9 @@ public class Order implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))
     List<Product> productList;
     @Column(name = "total_price", nullable = false)
+    @PositiveOrZero
     Long totalPrice;
     @Column(name = "date_created", nullable = false)
+    @CreationTimestamp
     Date dateCreated;
 }

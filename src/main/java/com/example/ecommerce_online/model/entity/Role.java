@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,11 +15,14 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "role")
+@Table(name = "tb_role")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotBlank
     String name;
+    @Enumerated(EnumType.STRING)
     @ElementCollection
     List<Authority> authority;
 }

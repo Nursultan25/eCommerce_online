@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "tb_user")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User implements Serializable {
     @Id
@@ -25,7 +26,6 @@ public class User implements Serializable {
     @Column(name = "last_name", nullable = false, length = 50)
     String lastName;
     @Column(unique = true, length = 50, nullable = false)
-    @Email
     String email;
     @Column(name = "phone_number", length = 15)
     String phoneNumber;

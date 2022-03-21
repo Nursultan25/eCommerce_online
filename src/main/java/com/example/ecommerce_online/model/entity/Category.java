@@ -3,10 +3,8 @@ package com.example.ecommerce_online.model.entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Setter
@@ -15,12 +13,19 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "category")
+@Table(name = "tb_category")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Category implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+    @NotBlank
+    String title;
+    String description;
+    @NotBlank
     String name;
-    @Column(columnDefinition = "DEFAULT boolean true")
+    @NotBlank
+    String image;
+    @Column(columnDefinition = "boolean default true")
     Boolean active;
 }
