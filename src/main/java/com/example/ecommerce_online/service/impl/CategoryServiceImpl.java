@@ -6,9 +6,6 @@ import com.example.ecommerce_online.service.CategoryService;
 import com.example.ecommerce_online.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category get(Long id) {
-        return categoryRepo.getById(id);
+        return categoryRepo.findById(id).orElseThrow(() -> new NotFoundException(""));
     }
 
     @Override

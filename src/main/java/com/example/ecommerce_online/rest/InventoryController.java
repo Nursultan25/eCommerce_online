@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/inventory")
+@CrossOrigin("*")
 public class InventoryController implements AbstractBaseController<Inventory>{
 
     private final InventoryService inventoryService;

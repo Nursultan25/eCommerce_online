@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/discount")
+@CrossOrigin("*")
 public class DiscountController implements AbstractBaseController<Discount>{
 
     private final DiscountService discountService;
