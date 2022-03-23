@@ -4,9 +4,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 import java.util.List;
 
 @Setter
@@ -15,9 +12,9 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tb_user")
+@Table(name = "tb_customer")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User implements Serializable {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -30,10 +27,8 @@ public class User implements Serializable {
     @Column(name = "phone_number", length = 15)
     String phoneNumber;
     String address;
-    @ManyToOne
-    @JoinColumn(name = "role")
-    Role role;
-    @Column(unique = true)
-    String login;
-    String password;
+    @Column(name = "payment_details")
+    String paymentDetails;
+    @OneToMany
+    List<Order> orderList;
 }

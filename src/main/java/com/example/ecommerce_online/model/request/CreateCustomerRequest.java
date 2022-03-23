@@ -1,6 +1,14 @@
 package com.example.ecommerce_online.model.request;
 
+
+import com.example.ecommerce_online.model.entity.Order;
+import com.example.ecommerce_online.model.entity.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -8,7 +16,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-public class UpdateUserRequest {
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+public class CreateCustomerRequest {
     @NotBlank
     String firstName;
 
@@ -29,13 +41,4 @@ public class UpdateUserRequest {
     @NotBlank
     @Size(min = 16, max = 16)
     String paymentDetails;
-
-    Long role;
-
-    @NotBlank
-    String login;
-
-    @NotBlank
-    @JsonIgnore
-    String password;
 }
