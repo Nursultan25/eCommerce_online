@@ -35,11 +35,15 @@ public class ProductMapper implements BaseMapper<ProductDto, Product>{
 
     @Override
     public List<Product> toEntities(List<ProductDto> dtoList) {
-        return dtoList.stream().map(x -> mapperFacade.map(x, Product.class)).collect(Collectors.toList());
+        return dtoList.stream().map(
+                x -> mapperFacade.map(x, Product.class))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<ProductDto> toDtoList(List<Product> entities) {
-        return entities.stream().map(x -> mapperFacade.map(x, ProductDto.class)).collect(Collectors.toList());
+        return entities.stream()
+                .map(x -> mapperFacade.map(x, ProductDto.class))
+                .collect(Collectors.toList());
     }
 }

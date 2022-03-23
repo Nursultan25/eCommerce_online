@@ -20,7 +20,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserDto {
+public class CustomerDto {
     Long id;
     String firstName;
     String lastName;
@@ -29,7 +29,4 @@ public class UserDto {
     String address;
     String paymentDetails;
     List<Order> orderList;
-    Role role;
-    String login;
-    String password;
 }
