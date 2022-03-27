@@ -8,11 +8,9 @@ import java.util.List;
 
 @Service
 public interface OrderService {
-
     Order create(CreateOrderRequest request);
 
     List<Order> getAll();
 
     Order get(Long id);
-
 }

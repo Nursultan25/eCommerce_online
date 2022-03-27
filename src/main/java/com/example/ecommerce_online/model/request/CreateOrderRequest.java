@@ -13,6 +13,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -23,13 +24,12 @@ import java.util.List;
 public class CreateOrderRequest {
 
     @NotNull
-    Long user;
+    CreateCustomerRequest customerRequest;
 
     @NotNull
     List<ProductDto> products;
 
     @NotNull
-            @PositiveOrZero
-    Long totalPrice;
-
+    @PositiveOrZero
+    BigDecimal totalPrice;
 }
