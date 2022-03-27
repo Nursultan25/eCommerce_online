@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @ManyToOne
-    @JoinColumn(name = "user")
-    User user;
+    @JoinColumn(name = "customer")
+    Customer customer;
     @ManyToMany
     @JoinTable(
             name = "product_orders",
@@ -33,7 +34,7 @@ public class Order implements Serializable {
     List<Product> productList;
     @Column(name = "total_price", nullable = false)
     @PositiveOrZero
-    Long totalPrice;
+    BigDecimal totalPrice;
     @Column(name = "date_created", nullable = false)
     @CreationTimestamp
     Date dateCreated;
