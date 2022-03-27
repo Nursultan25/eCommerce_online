@@ -13,9 +13,9 @@ A customer can choose a multiple products, which is going to be sent at the shop
 
 ## Technical Stack:
 
-Java 8/11, Spring (Boot, MVC, Data, Security), ORM (JPA, Hibernate), SQL (PostgreSQL)
+Java 11, Spring (Boot, MVC, Data, Security), ORM (JPA, Hibernate), SQL (PostgreSQL)
 
-<img src="https://cdn-icons-png.flaticon.com/128/226/226777.png" alt="drawing" width="40" height="40" />    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png" alt="drawing" width="40" height="40" />    <img src="https://cdn-icons-png.flaticon.com/512/188/188333.png" alt="drawing" width="40" height="40" />   <img src="https://cdn-icons.flaticon.com/png/512/3211/premium/3211296.png?token=exp=1648311619~hmac=d9fa74c7c5edd87e2a0403e25be22579" alt="drawing" width="40" height="40" />   <img src="https://seeklogo.com/images/H/hibernate-logo-8C95C75A24-seeklogo.com.png" alt="drawing" width="40" height="40" />
+<img src="https://cdn-icons-png.flaticon.com/128/226/226777.png" alt="drawing" width="40" height="40" />    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png" alt="drawing" width="40" height="40" />    <img src="https://cdn-icons-png.flaticon.com/512/188/188333.png" alt="drawing" width="40" height="40" />   <img src="https://cdn-icons-png.flaticon.com/512/1849/1849554.png" alt="drawing" width="40" height="40" />   <img src="https://seeklogo.com/images/H/hibernate-logo-8C95C75A24-seeklogo.com.png" alt="drawing" width="40" height="40" />
 
 ## Installation
 You can clone this repository and use it localy:
